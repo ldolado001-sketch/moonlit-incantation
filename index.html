@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Windows Internet Explorer</title>
+<script async src="https://cse.google.com/cse.js?cx=2006ef1eca0ff4605"></script>
+<style>
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:"Segoe UI","Malgun Gothic",sans-serif;font-size:12px;color:#000;
+  background:radial-gradient(ellipse at 30% 20%,#7fb2e5,#2a5d9a 70%,#16365e);
+  display:flex;align-items:center;justify-content:center;padding:12px}
+.win{width:100%;max-width:980px;height:100%;max-height:680px;display:flex;flex-direction:column;
+  background:#c4d8ee;border:1px solid #4d6f96;border-radius:8px 8px 4px 4px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);overflow:hidden;position:relative}
+.title{height:32px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 6px 0 34px;background:linear-gradient(#e3eefa,#a9c8e8);position:relative;border-bottom:1px solid #8aa9ce}
+.title::before{content:"e";position:absolute;left:9px;top:7px;width:18px;height:18px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#7fd0ff,#0a4fb5);color:#fff;font:bold 12px/18px Georgia,serif;text-align:center}
+.ttl{font-weight:600;color:#1b2f4a;text-shadow:0 0 6px #fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wbtns{display:flex;gap:2px}
+.wbtn{width:28px;height:19px;border:1px solid #6b8bb3;border-radius:3px;background:linear-gradient(#f5f9fd,#c5d8ec);
+  cursor:pointer;font-size:11px;line-height:17px;text-align:center;color:#1b2f4a;padding:0}
+.wbtn:hover{background:linear-gradient(#e0ecfa,#a9c6e6)}
+.wbtn.x:hover{background:linear-gradient(#f5a18d,#d9432a);color:#fff;border-color:#8b2a18}
+.menubar{display:flex;gap:4px;padding:3px 8px;background:#f0f4f9;border-bottom:1px solid #c5d3e3}
+.menubar span{cursor:pointer;padding:1px 6px;border:1px solid transparent;border-radius:2px}
+.menubar span:hover{background:#cfe3f7;border-color:#98bde0}
+.toolbar{display:flex;align-items:center;gap:6px;padding:6px 8px;background:linear-gradient(#e9f1fa,#cddcee);border-bottom:1px solid #9db5d0}
+.nav{width:30px;height:26px;border:1px solid #7c96b8;border-radius:4px;background:linear-gradient(#fbfdff,#d6e4f4);
+  cursor:pointer;font-size:14px;line-height:22px;padding:0;color:#1b2f4a}
+.nav:hover:not(:disabled){background:linear-gradient(#ffffff,#bcd4ee)}
+.nav:disabled{opacity:.4;cursor:default}
+.addr{flex:1;display:flex;align-items:center;height:26px;background:#fff;border:1px solid #7d98bb;border-radius:4px;overflow:hidden}
+.addr input{flex:1;border:0;outline:0;height:100%;padding:0 8px;font:13px "Segoe UI","Malgun Gothic",sans-serif;min-width:0}
+.go{width:30px;height:26px;border:0;border-left:1px solid #c5d3e3;background:linear-gradient(#f3fbf0,#cfe9c1);
+  cursor:pointer;color:#2e7d24;font-size:13px;padding:0}
+.favbar{display:flex;gap:4px;padding:3px 8px;background:#f5f8fc;border-bottom:1px solid #c5d3e3;align-items:center;font-size:11px;flex-wrap:wrap}
+.fav{border:1px solid transparent;background:none;padding:2px 6px;cursor:pointer;border-radius:3px;font:11px "Segoe UI","Malgun Gothic",sans-serif}
+.fav:hover{border-color:#98bde0;background:#dcebf9}
+.favbar .label{color:#555;margin-right:4px}
+.view{flex:1;background:#fff;position:relative;overflow:auto;min-height:0}
+.view iframe{width:100%;height:100%;border:0;display:block}
+.notice{background:#fff8d6;border-bottom:1px solid #e6cf6a;padding:4px 10px;font-size:11px;
+  display:flex;justify-content:space-between;align-items:center;gap:8px}
+.page{padding:28px 32px;max-width:720px;margin:0 auto}
+.page h2{font-weight:400;color:#1d5fa8;border-bottom:1px solid #cfdcec;padding-bottom:6px;margin-top:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+.tile{border:1px solid #b9cde4;border-radius:4px;padding:14px;cursor:pointer;background:linear-gradient(#ffffff,#e6f0fa);text-align:center}
+.tile:hover{border-color:#5a8fca;background:linear-gradient(#ffffff,#cfe3f7)}
+.tile b{display:block;font-size:14px;color:#1d4f8a;margin-bottom:4px}
+.tile small{color:#666}
+.btn{height:24px;padding:0 14px;border:1px solid #707070;border-radius:3px;background:linear-gradient(#f2f2f2,#dcdcdc);cursor:pointer;font:12px "Segoe UI","Malgun Gothic",sans-serif;margin-right:6px}
+.btn:hover{background:linear-gradient(#eaf4fc,#bcd9f3);border-color:#3c7fb1}
+.stats{margin:12px 0;padding:8px 10px;background:#f0f6fc;border:1px solid #cfdcec;font-size:13px}
+.stats b{color:#1d5fa8}
+.target{font-size:20px;line-height:1.7;padding:14px;background:#fbfbfb;border:1px solid #dcdcdc;border-radius:3px;word-break:keep-all;min-height:120px}
+.target span{position:relative}
+.target .ok{color:#2e7d24}
+.target .bad{color:#fff;background:#d9432a;border-radius:2px}
+.target .cur{border-bottom:2px solid #1d5fa8}
+#typein{width:100%;height:110px;margin-top:12px;font:16px "Segoe UI","Malgun Gothic",sans-serif;padding:8px;border:1px solid #7d98bb;resize:none;outline:none}
+#typein:focus{border-color:#1d5fa8;box-shadow:0 0 4px #7fb2e5}
+.status{height:22px;display:flex;justify-content:space-between;align-items:center;padding:0 10px;
+  background:#dfe9f5;border-top:1px solid #9db5d0;font-size:11px;color:#333;flex-shrink:0}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.25);display:none;align-items:center;justify-content:center;z-index:5}
+.dlg{width:300px;background:#c4d8ee;border:1px solid #4d6f96;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.5);overflow:hidden}
+.dlg .dt{background:linear-gradient(#e3eefa,#a9c8e8);padding:6px 10px;font-weight:600;color:#1b2f4a;border-bottom:1px solid #8aa9ce}
+.dlg .db{background:#f0f4f9;padding:18px 16px;font-size:13px;display:flex;gap:12px;align-items:flex-start}
+.dlg .ico{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#8fd3ff,#1e6bd6);color:#fff;text-align:center;line-height:28px;font-weight:bold;flex-shrink:0}
+.dlg .df{padding:8px;text-align:center;background:#e4ecf6;border-top:1px solid #c5d3e3}
+</style>
+</head>
+<body>
+<div class="win" id="win">
+  <div class="title">
+    <span class="ttl" id="ttl">Windows Internet Explorer</span>
+    <div class="wbtns">
+      
+      <button class="wbtn" id="btnMax" title="최대화">□</button>
+      
+    </div>
+  </div>
+
+  <div class="menubar">
+    <span data-go="about:home">홈</span>
+    <span data-go="about:typing">타자연습</span>
+    <span id="mFav">즐겨찾기 추가</span>
+    <span id="mReload">새로 고침</span>
+    <span data-go="about:home">도움말</span>
+  </div>
+
+  <div class="toolbar">
+    <button class="nav" id="bBack" title="뒤로" disabled>◀</button>
+    <button class="nav" id="bFwd" title="앞으로" disabled>▶</button>
+    <button class="nav" id="bRef" title="새로 고침">↻</button>
+    <button class="nav" id="bHome" title="홈">⌂</button>
+    <div class="addr">
+      <input id="addr" placeholder="주소를 입력하세요 (예: www.google.com)" autocomplete="off" spellcheck="false">
+      <button class="go" id="bGo" title="이동">➜</button>
+    </div>
+  </div>
+
+  <div class="favbar" id="favbar">
+    <span class="label">즐겨찾기:</span>
+  </div>
+
+  <div class="view" id="view"></div>
+
+  <div class="status">
+    <span id="stat">완료</span>
+    <span>인터넷 | 보호 모드: 사용 안 함 | 100%</span>
+  </div>
+
+  <div class="overlay" id="ov">
+    <div class="dlg">
+      <div class="dt">Windows Internet Explorer</div>
+      <div class="db"><div class="ico">!</div><div id="dlgMsg"></div></div>
+      <div class="df"><button class="btn" id="dlgOk">확인</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const view = $('view'), addr = $('addr');
+const SENTS = [
+  "The quick brown fox jumps over the lazy dog.",
+  "Practice makes perfect, so keep typing every day.",
+  "가나다라마바사 아자차카타파하 오늘도 한 걸음씩 나아가요.",
+  "컴퓨터를 켜고 천천히 정확하게 타자를 쳐 보세요.",
+  "Internet Explorer was once the most popular web browser.",
+  "정확도가 먼저이고, 속도는 나중에 따라옵니다."
+];
+const SITES = [
+  {name:"Google", url:"https://www.google.com", desc:"구글 검색"},
+  {name:"타자 연습", url:"about:typing", desc:"분당 타수 측정"},
+  {name:"홈 페이지", url:"about:home", desc:"시작 페이지"}
+];
+let hist = [], idx = -1, favs = [{name:"Google", url:"https://www.google.com"}, {name:"타자 연습", url:"about:typing"}];
+let tStart = null, tTimer = null;
+
+/* ---------- 주소 판별 ---------- */
+function toUrl(s){
+  s = s.trim();
+  if(!s) return null;
+  if(/^about:(home|typing)$/i.test(s)) return s.toLowerCase();
+  if(/^https?:\/\/\S+$/i.test(s)) return s;
+  if(/^(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i.test(s)) return "https://" + s;
+  return null;
+}
+function showDlg(msg){ $('dlgMsg').textContent = msg; $('ov').style.display = 'flex'; }
+$('dlgOk').onclick = () => $('ov').style.display = 'none';
+
+/* ---------- 이동 ---------- */
+function go(input, push = true){
+  const u = toUrl(input);
+  if(!u){ showDlg("주소로 기입해 주십시오."); return; }
+  if(push){ hist = hist.slice(0, idx + 1); hist.push(u); idx++; }
+  render(u);
+}
+function render(u){
+  const label = u.startsWith("about:") ? (u === "about:typing" ? "타자 연습" : "홈 페이지") : u;
+  $('ttl').textContent = label + " - Windows Internet Explorer";
+  $('stat').textContent = "완료";
+  addr.value = u;
+  $('bBack').disabled = idx <= 0;
+  $('bFwd').disabled = idx >= hist.length - 1;
+
+  if(u === "about:home") { view.innerHTML = homeHTML(); bindTiles(); }
+  else if(u === "about:typing") { view.innerHTML = typingHTML(); initTyping(); }
+  else if(/google\.com/i.test(u)){ view.innerHTML = cseHTML(); renderCse(); }
+  else {
+    view.innerHTML = `
+      <div class="notice">
+        <span>구글 등 외부 사이트는 새 탭에서 열립니다.</span>
+        <button class="btn" id="openNew">새 탭에서 열기</button>
+      </div>
+      `;
+    window.open(u, "_blank");
+    $('openNew').onclick = () => window.open(u, "_blank");
+  }
+}
+function cseHTML(){
+  return `<div class="page"><h2>구글 검색</h2><div class="gcse-search"></div></div>`;
+}
+function renderCse(n = 0){
+  if(window.google && google.search && google.search.cse){ google.search.cse.element.go(); }
+  else if(n < 20){ setTimeout(() => renderCse(n + 1), 300); }
+}
+function homeHTML(){
+  return `<div class="page"><h2>시작 페이지</h2>
+    <p>주소창에 주소를 입력하고 <b>Enter</b>를 누르세요. 예: <i>www.google.com</i></p>
+    <div class="tiles">${SITES.map((s,i)=>`<div class="tile" data-i="${i}"><b>${s.name}</b><small>${s.desc}</small></div>`).join("")}</div>
+  </div>`;
+}
+function bindTiles(){
+  view.querySelectorAll('.tile').forEach(t => t.onclick = () => go(SITES[t.dataset.i].url));
+}
+
+/* ---------- 타자 연습 ---------- */
+function typingHTML(){
+  return `<div class="page"><h2>타자 연습</h2>
+    <div class="stats">시간: <b id="tm">0.0</b>초 &nbsp;|&nbsp; 분당 타수: <b id="cpm">0</b> &nbsp;|&nbsp; 정확도: <b id="acc">100</b>%</div>
+    <div class="target" id="target"></div>
+    <textarea id="typein" placeholder="위의 문장을 똑같이 입력하세요 (한/영 전환 가능)"></textarea>
+    <div style="margin-top:10px"><button class="btn" id="newT">새 문장</button><button class="btn" id="resetT">다시 시작</button></div>
+  </div>`;
+}
+let target = "";
+function initTyping(){
+  const ta = $('typein');
+  newSentence();
+  ta.addEventListener('input', onType);
+  $('newT').onclick = newSentence;
+  $('resetT').onclick = () => { ta.value = ""; newSentence(); };
+  ta.focus();
+}
+function newSentence(){
+  clearInterval(tTimer); tStart = null;
+  target = SENTS[Math.floor(Math.random() * SENTS.length)];
+  $('target').innerHTML = [...target].map((c,i) => `<span data-i="${i}">${c === ' ' ? '&nbsp;' : c}</span>`).join("");
+  const ta = $('typein'); ta.value = ""; ta.disabled = false; ta.focus();
+  $('tm').textContent = "0.0"; $('cpm').textContent = "0"; $('acc').textContent = "100";
+}
+function onType(){
+  const ta = $('typein'), typed = ta.value;
+  if(!tStart && typed.length){ tStart = Date.now(); tTimer = setInterval(updateStats, 100); }
+  const spans = $('target').children;
+  let correct = 0;
+  for(let i = 0; i < target.length; i++){
+    const s = spans[i];
+    if(i < typed.length){
+      const ok = typed[i] === target[i];
+      s.className = ok ? 'ok' : 'bad';
+      if(ok) correct++;
+    } else s.className = (i === typed.length) ? 'cur' : '';
+  }
+  $('acc').textContent = typed.length ? Math.round(correct / typed.length * 100) : 100;
+  updateStats();
+  if(typed.length >= target.length){ finish(); }
+}
+function updateStats(){
+  if(!tStart) return;
+  const sec = (Date.now() - tStart) / 1000;
+  const typed = $('typein').value.length;
+  $('tm').textContent = sec.toFixed(1);
+  $('cpm').textContent = sec > 0 ? Math.round(typed / (sec / 60)) : 0;
+}
+function finish(){
+  clearInterval(tTimer);
+  updateStats();
+  $('typein').disabled = true;
+  showDlg(`완료! 분당 타수 ${$('cpm').textContent}, 정확도 ${$('acc').textContent}%`);
+  $('dlgOk').onclick = () => { $('ov').style.display = 'none'; newSentence(); };
+}
+
+/* ---------- 즐겨찾기 ---------- */
+function renderFavs(){
+  const bar = $('favbar');
+  bar.innerHTML = '<span class="label">즐겨찾기:</span>' + favs.map((f,i) =>
+    `<button class="fav" data-i="${i}">★ ${f.name}</button>`).join("");
+  bar.querySelectorAll('.fav').forEach(b => b.onclick = () => go(favs[b.dataset.i].url));
+}
+$('mFav').onclick = () => {
+  const cur = hist[idx];
+  if(!cur) { showDlg("먼저 페이지를 열어 주세요."); return; }
+  if(favs.some(f => f.url === cur)) { showDlg("이미 즐겨찾기에 있습니다."); return; }
+  favs.push({name: cur.startsWith("about:") ? cur.slice(6) : cur.replace(/^https?:\/\//, ""), url: cur});
+  renderFavs();
+};
+
+/* ---------- 이벤트 ---------- */
+$('bGo').onclick = () => go(addr.value);
+addr.addEventListener('keydown', e => { if(e.key === 'Enter') go(addr.value); });
+$('bBack').onclick = () => { if(idx > 0){ idx--; render(hist[idx]); } };
+$('bFwd').onclick = () => { if(idx < hist.length - 1){ idx++; render(hist[idx]); } };
+$('bRef').onclick = $('mReload').onclick = () => { if(idx >= 0) render(hist[idx]); };
+$('bHome').onclick = () => go("about:home");
+document.querySelectorAll('.menubar [data-go]').forEach(s => s.onclick = () => go(s.dataset.go));
+
+/* 창 버튼 (데모용 동작) */
+$('btnMax').onclick = () => {
+  const w = $('win'); w.style.maxWidth = w.style.maxWidth === '100%' ? '980px' : '100%';
+  w.style.maxHeight = w.style.maxHeight === '100%' ? '680px' : '100%';
+};
+
+
+
+renderFavs();
+go("about:home");
+</script>
+</body>
+</html>
